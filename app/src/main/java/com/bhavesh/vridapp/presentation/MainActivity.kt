@@ -1,4 +1,4 @@
-package com.bhavesh.vridapp
+package com.bhavesh.vridapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.bhavesh.vridapp.presentation.blog_screen.BlogsViewModel
 import com.bhavesh.vridapp.ui.theme.VridAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +35,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String, modifier: Modifier = Modifier , viewModel: BlogsViewModel = hiltViewModel()) {
     Text(
-        text = "Hello $name!",
+        text = "Hello $name!"+ viewModel.state.value.blogs.get(1),
         modifier = modifier
     )
 }
